@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
+    <h2>Employees List</h2>
+    
+    <a th:href="@{/home/ajouter}">Add Employee</a>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Last name</th>
+                <th>First name</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}" >
+                <td th:text="${employee.id}" ></td>
+                <td th:text="${employee.lastName}"></td>
+                <td th:text="${employee.firstName}"></td>
+                <td th:text="${employee.email}"></td>
+                <td th:text="${employee.password}"></td>
+                <!-- URL /home/detail?id -->
+                <!-- <td><a th:href="@{/home/detail(id=${employee.id})}">Detail</a></td> -->
+                <!-- URL /home/detail/id -->
+                <td><a th:href="@{/home/detail/employee{id}(id=${employee.id})}">Detail</a></td>
+                <td><a th:href="@{/home/modifier(id=${employee.id})}">Modifier</a></td>
+                <td>
+                    <form th:action="@{/home/supprimer/{id}(id=${employee.id})}" method="post">
+                        <!-- balise input pour l'ID employee -->
+                        <input type="hidden" name="id" th:value="${employee.id}" />
+                        <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?')">Effacer</button>
+                    </form>
+                </td>
+                
+                
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>

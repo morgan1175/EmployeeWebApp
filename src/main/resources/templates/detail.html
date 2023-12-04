@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee infos</title>
+</head>
+<body>
+    <h1>INFOS</h1>
+
+    <!-- Afficher les détails-->
+    <div>
+        <p><strong>ID:</strong> <span th:text="${employee.id}"></span></p>
+        <p><strong>firstName:</strong> <span th:text="${employee.firstName}"></span></p>
+        <p><strong>lastName:</strong> <span th:text="${employee.lastName}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${employee.email}"></span></p>
+        <p><strong>Password:</strong> <span th:text="${employee.password}"></span></p>
+    </div>
+
+    <!-- Lien pour revenir à la liste des employees -->
+    <a th:href="@{/home}">Retour à la liste</a>
+</body>
+</html>
